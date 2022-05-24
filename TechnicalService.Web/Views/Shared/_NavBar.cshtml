@@ -1,0 +1,60 @@
+﻿@using TechnicalService.Core.Identity
+@using Microsoft.AspNetCore.Http;
+
+@{
+    var userString = Context.Session.GetString("User") ?? "";
+
+    var user = new ApplicationUser();
+    if (userString != "")
+    {
+        user = System.Text.Json.JsonSerializer.Deserialize<ApplicationUser>(userString);
+    }
+}
+
+
+<div class="container-fluid nav-bar bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white p-3 py-lg-0 px-lg-4">
+        <a href="" class="navbar-brand d-flex align-items-center m-0 p-0 d-lg-none">
+            <h1 class="text-primary m-0">Raijin</h1>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="fa fa-bars"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav me-auto">
+                <a asp-controller="Home" asp-action="Index" class="nav-item nav-link ">Anasayfa</a>
+                <a asp-controller="Home" asp-action="About" class="nav-item nav-link ">Hakkımızda</a>
+                <a asp-controller="Home" asp-action="Services" class="nav-item nav-link">Hizmetlerimiz</a>
+                <a asp-controller="Home" asp-action="Contact" class="nav-item nav-link">İletişim</a>
+
+            </div>
+
+            <div class="mt-4 mt-lg-0 me-lg-n4 py-3 px-4 d-flex align-items-center">
+
+                @if (Context.User.Identity.IsAuthenticated)
+                {
+
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @user.Name @user.Surname
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" asp-controller="Account" asp-action="EditProfile">Profili Güncelle</a>
+                            <a class="dropdown-item" href="#">Servis Talepleri</a>
+                            <a class="dropdown-item" asp-controller="Account" asp-action="Logout">Çıkış Yap</a>
+                        </div>
+                    </div>                  
+                }
+                else
+                {
+                    <a asp-controller="Account" asp-action="Login" class="" data-toggle="" aria-haspopup="true" aria-expanded="false">
+                        <button class="btn btn-primary" type="submit">Servis Talebi Oluştur</button>
+                    </a>
+                    <div class="ms-3">
+                        <a asp-controller="Account" asp-action="Login" class="btn btn-primary">Giriş Yap</a>
+                    </div>
+                }
+            </div>
+        </div>
+    </nav>
+</div>
