@@ -18,11 +18,11 @@ Adrese gidip yerinde müdahale eden bir teknik servisin internet sitesi. Bu site
  ![Inkedregister_LI](https://user-images.githubusercontent.com/100076932/172198569-a4fc5175-080c-4467-9b96-d42a166d2e2a.jpg)
  
  ### 2- Login Page
- ![2](https://user-images.githubusercontent.com/100076932/167494061-2c8d9cfe-2fb9-4cc6-bbfe-701a91914af8.png)
+ ![giriş ekranı](https://user-images.githubusercontent.com/100076932/172198736-6cbc53e0-b094-44ea-b392-811e9810e16c.png)
  
  ### 3- Profile Page
- ![4](https://user-images.githubusercontent.com/100076932/167494185-60fcc818-208c-4931-b5c4-8dbaeb7db0ba.png)
+![profil güncelleme](https://user-images.githubusercontent.com/100076932/172198872-63b87797-0729-4c6e-af52-89a4132b742e.png)
  
- ### 4- Category Page
- ![3](https://user-images.githubusercontent.com/100076932/167494300-f2e75191-1580-463e-ace8-6f6c353bfa19.png)
+ ### 4- Service Form Page
+![service talep](https://user-images.githubusercontent.com/100076932/172199090-e6fbc148-a3b4-40bb-9cea-2f12c1afa41e.jpg)
  
