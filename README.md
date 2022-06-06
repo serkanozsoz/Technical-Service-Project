@@ -1,10 +1,10 @@
 ## <a href="https://github.com/serkanozsoz/Technical-Service-Project">TechnicalServiceProject</a>
 
-Adrese gidip yerinde müdahale eden bir teknik servisin internet sitesi. Bu site içerisinde üyelik işlemleri(sil, ekle, güncelle), üyelik rolleri ve sipariş sepet sistemi bulunmaktadır. Kullanıcılar servis talebi oluşturup, hizmeti aldıktan sonra ödeme işlemini de site içinden yapmaktadır. Ödeme sistemi entegrasyonu olarak sanal pos bulunmaktadır.
+Adrese gidip yerinde mÃ¼dahale eden bir teknik servisin internet sitesi. Bu site iÃ§erisinde Ã¼yelik iÃ¾lemleri(sil, ekle, gÃ¼ncelle), Ã¼yelik rolleri ve sipariÃ¾ sepet sistemi bulunmaktadÃ½r. KullanÃ½cÃ½lar servis talebi oluÃ¾turup, hizmeti aldÃ½ktan sonra Ã¶deme iÃ¾lemini de site iÃ§inden yapmaktadÃ½r. Ã–deme sistemi entegrasyonu olarak sanal pos bulunmaktadÃ½r.
 
 ----------
 
-## Kullanılan Teknolojiler ##
+## KullanÄ±lan Teknolojiler ##
 
  - Repository Entity Pattern
  - ASP.Net MVC 
@@ -15,7 +15,7 @@ Adrese gidip yerinde müdahale eden bir teknik servisin internet sitesi. Bu site 
  - ASP.Net Identity EntityFramework
  
  ### 1- Register Page
- ![1](https://user-images.githubusercontent.com/100076932/167493703-21b4f6c8-9acd-4ec6-9155-3261537501fe.png)
+ ![Inkedregister_LI](https://user-images.githubusercontent.com/100076932/172198569-a4fc5175-080c-4467-9b96-d42a166d2e2a.jpg)
  
  ### 2- Login Page
  ![2](https://user-images.githubusercontent.com/100076932/167494061-2c8d9cfe-2fb9-4cc6-bbfe-701a91914af8.png)
