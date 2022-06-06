@@ -1,10 +1,10 @@
 ## <a href="https://github.com/serkanozsoz/Technical-Service-Project">TechnicalServiceProject</a>
 
-Adrese gidip yerinde müdahale eden bir teknik servisin internet sitesi. Bu site içerisinde üyelik işlemleri(sil, ekle, güncelle), üyelik rolleri ve sipariş sepet sistemi bulunmaktadır. Kullanıcılar servis talebi oluşturup, hizmeti aldıktan sonra ödeme işlemini de site içinden yapmaktadır. Ödeme sistemi entegrasyonu olarak sanal pos bulunmaktadır.
+Adrese gidip yerinde mÃ¼dahale eden bir teknik servisin internet sitesi. Bu site iÃ§erisinde Ã¼yelik iÃ¾lemleri(sil, ekle, gÃ¼ncelle), Ã¼yelik rolleri ve sipariÃ¾ sepet sistemi bulunmaktadÃ½r. KullanÃ½cÃ½lar servis talebi oluÃ¾turup, hizmeti aldÃ½ktan sonra Ã¶deme iÃ¾lemini de site iÃ§inden yapmaktadÃ½r. Ã–deme sistemi entegrasyonu olarak sanal pos bulunmaktadÃ½r.
 
 ----------
 
-## Kullanılan Teknolojiler ##
+## KullanÄ±lan Teknolojiler ##
 
  - Repository Entity Pattern
  - ASP.Net MVC 
@@ -15,14 +15,28 @@ Adrese gidip yerinde müdahale eden bir teknik servisin internet sitesi. Bu site 
  - ASP.Net Identity EntityFramework
  
  ### 1- Register Page
- ![1](https://user-images.githubusercontent.com/100076932/167493703-21b4f6c8-9acd-4ec6-9155-3261537501fe.png)
+ ![Inkedregister_LI](https://user-images.githubusercontent.com/100076932/172198569-a4fc5175-080c-4467-9b96-d42a166d2e2a.jpg)
  
  ### 2- Login Page
- ![2](https://user-images.githubusercontent.com/100076932/167494061-2c8d9cfe-2fb9-4cc6-bbfe-701a91914af8.png)
+ ![giriÅŸ ekranÄ±](https://user-images.githubusercontent.com/100076932/172198736-6cbc53e0-b094-44ea-b392-811e9810e16c.png)
  
  ### 3- Profile Page
- ![4](https://user-images.githubusercontent.com/100076932/167494185-60fcc818-208c-4931-b5c4-8dbaeb7db0ba.png)
+![profilee](https://user-images.githubusercontent.com/100076932/172199293-23b3bc27-6e23-45fd-92c6-2c03f057932a.jpg)
  
- ### 4- Category Page
- ![3](https://user-images.githubusercontent.com/100076932/167494300-f2e75191-1580-463e-ace8-6f6c353bfa19.png)
+ ### 4- Service Form Page
+![service talep](https://user-images.githubusercontent.com/100076932/172199090-e6fbc148-a3b4-40bb-9cea-2f12c1afa41e.jpg)
+
+ ### 5- Home Page
+![ana sayfa](https://user-images.githubusercontent.com/100076932/172199628-bfe7a364-c9a1-4639-a6b3-7230229c4eb6.png)
+
+ ### 6- About-Us Page
+![hakkÄ±mÄ±zda](https://user-images.githubusercontent.com/100076932/172199773-b9a23307-4c9c-4e87-9103-71967ba8233a.png)
+![hkk](https://user-images.githubusercontent.com/100076932/172199837-8bd0e78f-6493-49d1-b518-a5cc1ac52d9d.png)
+
+ ### 7- Our Services Page
+![Hizmetlerimiz](https://user-images.githubusercontent.com/100076932/172200038-8ac3d8fc-b5a8-4d15-a5a7-f832326203bb.png)
+
+ ### 8- Contact Page
+![iletiÅŸim](https://user-images.githubusercontent.com/100076932/172200206-829491b2-28d3-4f7f-926b-072f630c8f7f.png)
+
  
