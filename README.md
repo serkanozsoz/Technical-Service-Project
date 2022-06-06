@@ -25,4 +25,18 @@ Adrese gidip yerinde müdahale eden bir teknik servisin internet sitesi. Bu site
  
  ### 4- Service Form Page
 ![service talep](https://user-images.githubusercontent.com/100076932/172199090-e6fbc148-a3b4-40bb-9cea-2f12c1afa41e.jpg)
+
+ ### 5- Home Page
+![ana sayfa](https://user-images.githubusercontent.com/100076932/172199628-bfe7a364-c9a1-4639-a6b3-7230229c4eb6.png)
+
+ ### 6- About-Us Page
+![hakkımızda](https://user-images.githubusercontent.com/100076932/172199773-b9a23307-4c9c-4e87-9103-71967ba8233a.png)
+![hkk](https://user-images.githubusercontent.com/100076932/172199837-8bd0e78f-6493-49d1-b518-a5cc1ac52d9d.png)
+
+ ### 7- Our Services Page
+![Hizmetlerimiz](https://user-images.githubusercontent.com/100076932/172200038-8ac3d8fc-b5a8-4d15-a5a7-f832326203bb.png)
+
+ ### 8- Contact Page
+![iletişim](https://user-images.githubusercontent.com/100076932/172200206-829491b2-28d3-4f7f-926b-072f630c8f7f.png)
+
  
