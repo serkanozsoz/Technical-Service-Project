@@ -21,7 +21,7 @@ Adrese gidip yerinde müdahale eden bir teknik servisin internet sitesi. Bu site
  ![giriş ekranı](https://user-images.githubusercontent.com/100076932/172198736-6cbc53e0-b094-44ea-b392-811e9810e16c.png)
  
  ### 3- Profile Page
-![profil güncelleme](https://user-images.githubusercontent.com/100076932/172198872-63b87797-0729-4c6e-af52-89a4132b742e.png)
+![profilee](https://user-images.githubusercontent.com/100076932/172199293-23b3bc27-6e23-45fd-92c6-2c03f057932a.jpg)
  
  ### 4- Service Form Page
 ![service talep](https://user-images.githubusercontent.com/100076932/172199090-e6fbc148-a3b4-40bb-9cea-2f12c1afa41e.jpg)
