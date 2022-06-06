@@ -1,6 +1,8 @@
 ## <a href="https://github.com/serkanozsoz/Technical-Service-Project">TechnicalServiceProject</a>
 
-Adrese gidip yerinde müdahale eden bir teknik servisin internet sitesi. Bu site içerisinde üyelik iþlemleri(sil, ekle, güncelle), üyelik rolleri ve sipariþ sepet sistemi bulunmaktadýr. Kullanýcýlar servis talebi oluþturup, hizmeti aldýktan sonra ödeme iþlemini de site içinden yapmaktadýr. Ödeme sistemi entegrasyonu olarak sanal pos bulunmaktadýr.
+Herhangi bir ürünün yerinde servisini organize eden, servis işlemlerinin online ortamda takip edildiği
+iklimlendirme sistemleri üzerine hazırlanmış bir teknik servis web uygulamasıdır. Sistemimizde üyelik işlemleri(sil, ekle, güncelle), üyelik rolleri ve sipariş sepet sistemi bulunmaktadır. Kullanıcılar servis talebi oluşturup, hizmeti aldıktan sonra ödeme işlemini de site içinden yapmaktadır. Ödeme sistemi entegrasyonu olarak sanal pos bulunmaktadır. Ödeme öncesinde ödeme bildirimi ve sonrasında ödendi bilgisi mail
+olarak gönderilmektedir. Müşteri servis konumu girmek için Google maps Api kullanılmıştır.  İşlem bitirildiğinde kullanıcıya ödeme bilgisi iletilip kullanıcı da panelinden sanal pos ile bu ödemeyi tamamlayabildiği bir web uygulamasıdır.
 
 ----------
 
