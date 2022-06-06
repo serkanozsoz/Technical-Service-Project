@@ -11,12 +11,12 @@ using TechnicalService.Core.Services.Email;
 using TechnicalService.Web.ViewModels;
 
 namespace TechnicalService.Web.Controllers
-    
+
 {
 
     public class AccountController : Controller
     {
-        
+
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<ApplicationRole> _roleManager;
         private readonly IEmailService _emailService;
@@ -31,7 +31,7 @@ namespace TechnicalService.Web.Controllers
             _emailService = emailService;
             _roleManager = roleManager;
             _signInManager = signInManager;
-            CheckRoles();
+            //CheckRoles();
         }
         private void CheckRoles()
         {
@@ -87,7 +87,7 @@ namespace TechnicalService.Web.Controllers
 
             }
 
-            ModelState.AddModelError(string.Empty, "Username or password is incorrect");
+            ModelState.AddModelError(string.Empty, "Mail veya şifre hatalı!");
             return View(model);
         }
         public IActionResult Register()
@@ -108,7 +108,8 @@ namespace TechnicalService.Web.Controllers
                 UserName = model.Email,
                 Email = model.Email,
                 Name = model.Name,
-                Surname = model.Surname
+                Surname = model.Surname,
+                PhoneNumber = model.Phone
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);
@@ -181,9 +182,229 @@ namespace TechnicalService.Web.Controllers
         }
 
         [Authorize]
-        public IActionResult EditProfile()
+        public async Task<IActionResult> EditProfile()
+        {
+            var name = HttpContext.User.Identity.Name;
+            var user = await _userManager.FindByNameAsync(name);
+            var model = new ProfileUpdateViewModel
+            {
+                UserProfileVM = new UserProfileViewModel()
+                {
+                    Email = user.Email,
+                    Name = user.Name,
+                    Surname = user.Surname,
+                    Phone = user.PhoneNumber
+                }
+            };
+
+            return View(model);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> EditProfile(ProfileUpdateViewModel model)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var name = HttpContext.User.Identity.Name;
+            var user = await _userManager.FindByNameAsync(name);
+
+            if (user == null)
+            {
+                ModelState.AddModelError(string.Empty, "Kullanıcı bulunamadı!");
+                return View(model);
+            }
+
+            //var isAdmin = await _userManager.IsInRoleAsync(user, Roles.Admin);
+            //if (user.Email != model.UserProfileVM.Email && !isAdmin)
+            //{
+            //    await _userManager.RemoveFromRoleAsync(user, Roles.User);
+            //    await _userManager.AddToRoleAsync(user, Roles.Passive);
+            //    user.EmailConfirmed = false;
+
+            //    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            //    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+            //    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Scheme);
+
+            //    var emailMessage = new MailModel()
+            //    {
+            //        To = new List<EmailModel> { new()
+            //    {
+            //        Adress = model.UserProfileVM.Email,
+            //        Name = model.UserProfileVM.Name
+            //    }},
+            //        Body = $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here </a>.",
+            //        Subject = "Confirm your email"
+            //    };
+
+            //    await _emailService.SendMailAsync(emailMessage);
+            //}
+
+
+            user.Name = model.UserProfileVM.Name;
+            user.Surname = model.UserProfileVM.Surname;
+            user.Email = model.UserProfileVM.Email;
+            user.PhoneNumber = model.UserProfileVM.Phone;
+
+            var result = await _userManager.UpdateAsync(user);
+            if (result.Succeeded)
+            {
+                ViewBag.Message = "Profiliniz başarıyla güncellendi!";
+                var userl = await _userManager.FindByNameAsync(user.UserName);
+                await _signInManager.SignInAsync(userl, true);
+                HttpContext.Session.SetString("User", System.Text.Json.JsonSerializer.Serialize(new
+                {
+                    user.Name,
+                    user.Surname,
+                    user.Email,
+                    user.PhoneNumber
+                }));
+            }
+            else
+            {
+                var message = string.Join("<br>", result.Errors.Select(x => x.Description));
+                ViewBag.Message = message;
+            }
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult ChangePassword(string userId, string code)
+        {
+            if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(code))
+            {
+                return BadRequest("Hatalı istek");
+            }
+
+            ViewBag.Code = code;
+            ViewBag.UserId = userId;
+            return View();
+        }
+
+        [HttpPost, Authorize]
+        public async Task<IActionResult> ChangePassword(ProfileUpdateViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                TempData["PassError"] = "Bir hata oluştu!";
+                return RedirectToAction(nameof(EditProfile));
+            }
+
+            var name = HttpContext.User.Identity.Name;
+            var user = await _userManager.FindByNameAsync(name);
+            var result = await _userManager.ChangePasswordAsync(user, model.ChangePasswordVM.CurrentPassword, model.ChangePasswordVM.NewPassword);
+
+            if (result.Succeeded)
+            {
+                TempData["PassSuccess"] = "Şifreniz başarıyla değiştirildi.";
+            }
+            else
+            {
+                var message = string.Join("<br>", result.Errors.Select(x => x.Description));
+                TempData["PassError"] = message;
+            }
+
+
+            return RedirectToAction(nameof(EditProfile));
+        }
+
+        [HttpGet]
+        public IActionResult ResetPassword()
         {
             return View();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(string email)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user != null)
+            {
+                var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+                code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+                var callbackUrl = Url.Action("ConfirmResetPassword", "Account", new { userId = user.Id, code }, Request.Scheme);
+
+
+                var emailMessage = new MailModel()
+                {
+                    To = new List<EmailModel> { new EmailModel()
+                {
+                    Adress = user.Email,
+                    Name = user.Name
+                }},
+                    Body = $"Şifrenizi <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>buraya tıklayarak</a> değiştirebilirsiniz.",
+                    Subject = "Raijin Teknik Servis şifre sıfırlama"
+                };
+
+                await _emailService.SendMailAsync(emailMessage);
+            }
+
+            ViewBag.Message = "Eğer mail adresiniz doğru ise şifre güncelleme yönergemiz gönderilmiştir";
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult ConfirmResetPassword(string userId, string code)
+        {
+            if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(code))
+            {
+                return BadRequest("Hatalı istek");
+            }
+
+            ViewBag.Code = code;
+            ViewBag.UserId = userId;
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ConfirmResetPassword(ResetPasswordViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var user = await _userManager.FindByIdAsync(model.UserId);
+            if (user == null)
+            {
+                ModelState.AddModelError(string.Empty, "Kullanıcı bulunamadı");
+                return View(model);
+            }
+
+            var code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(model.Code));
+
+            var result = await _userManager.ResetPasswordAsync(user, code, model.NewPassword);
+
+            if (result.Succeeded)
+            {
+                var emailMessage = new MailModel()
+                {
+                    To = new List<EmailModel> { new EmailModel()
+                {
+                    Adress = user.Email,
+                    Name = user.Name
+                }},
+                    Body = $"Your password has changed. You can login by <a href='{Url.Action("Login", "Account")}'>here</a>",
+                    Subject = "Your password changed successfully"
+                };
+                await _emailService.SendMailAsync(emailMessage);
+                TempData["Message"] = "Şifre değişikliğiniz gerçekleştirilmiştir";
+                return RedirectToAction("Login");
+            }
+
+
+            var message = string.Join("<br>", result.Errors.Select(x => x.Description));
+            TempData["Message"] = message;
+            return RedirectToAction("Login");
+
+        }
     }
+
+
+
 }
