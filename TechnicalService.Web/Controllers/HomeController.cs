@@ -5,7 +5,7 @@ using TechnicalService.Core.Models;
 namespace TechnicalService.Web.Controllers
 {
     public class HomeController : Controller
-        /// deneme 1
+    /// deneme 1
     {
         private readonly ILogger<HomeController> _logger;
         //deneme2
