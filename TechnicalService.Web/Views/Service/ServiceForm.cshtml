@@ -1,75 +1,73 @@
-﻿
-@model ServiceViewModel
+﻿@model ServiceViewModel
 @using TechnicalService.Core.Identity
 
 
 @{
-    
+
 
     var user = new ApplicationUser();
 
 }
 
-
 <div class="card col-10 offset-1">
-    <form>
+    <form asp-controller="Service" asp-action="ServiceForm" method="post">
         <div class="row" style="margin: auto;">
             <div class="row card-body">
                 <div class="col-6">
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label for="inputEmail4">Ad</label>
-                            <input type="name" class="form-control" id="inputEmail4" placeholder="aaaaaaaaaaaaa">
+                            <label class="form-label" >Ad</label>
+                            <input asp-for="Name" class="form-control" id="Nameid" >
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="inputPassword4">Soyad</label>
-                            <input type="password" class="form-control" id="inputPassword4" placeholder="@user.Surname">
+                            <label class="form-label" >Soyad</label>
+                            <input asp-for="Surname" class="form-control" id="Surnameid">
                         </div>
                     </div>
                     <div class="row" style="margin-bottom: 10px;">
                         <div class="form-group col-md-6">
-                            <label for="inputEmail4">Email</label>
-                            <input type="email" class="form-control" id="inputEmail4" placeholder="@user.Email">
+                            <label class="form-label" >Email</label>
+                            <input asp-for="Email" class="form-control" id="Emailid" >
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="inputPassword4">Telefon</label>
-                            <input type="password" class="form-control" id="inputPassword4" placeholder="@Context.User.Identity.">
+                            <label class="form-label">Telefon</label>
+                            <input asp-for="Phone" class="form-control" id="Phoneid">
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group">
-                            <label for="inputCity">Adres</label>
-                            <input type="text" class="form-control" id="inputCity" placeholder="aaaaaaaasmse">
+                            <label class="form-label">Adres</label>
+                            <input asp-for="CustomerAddress" class="form-control" id="CustomerAdressid" >
                         </div>
                     </div>
                     <div class="row" style="margin-bottom: 10px;">
                         <div class="form-group col-md-3">
-                            <label for="inputCity">Apt no</label>
-                            <input type="text" class="form-control" id="inputCity">
+                            <label class="form-label">Aptartman No</label>
+                            <input class="form-control" asp-for="BuildingNo" id="BuildingNoid">
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="inputCity">Kat</label>
-                            <input type="text" class="form-control" id="inputCity">
+                            <label class="form-label">Kat</label>
+                            <input class="form-control" asp-for="FloorNo" id="FloorNoid">
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="inputCity">Daire</label>
-                            <input type="text" class="form-control" id="inputCity">
+                            <label asp-for="DoorNo">Daire</label>
+                            <input class="form-control" asp-for="DoorNo" id="DoorNoid">
                         </div>
                     </div>
                     <div class="row" style="margin-bottom: 10px;">
                         <div class="form-group">
-                            <p><label for="inputCity">Mesaj</label></p>
-                            <textarea id="w3review" name="w3review" rows="4" cols="50"></textarea>
+                            <p><label asp-for="Message">Mesaj</label></p>
+                            <textarea asp-for="Message" rows="4" cols="50"> </textarea>
                         </div>
                     </div>
                     <div class="row d-flex justify-content-center">
-                        <a class="btn btn-primary col-md-3" href="#">Talep Oluştur</a>
+                        <a type="submit" class="btn btn-primary col-md-3" href="#">Talep Oluştur</a>
                     </div>
                 </div>
-                <div class="col-6">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3009.1382990261286!2d29.004627714784657!3d41.04410462516943!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab7a24975fe5d%3A0xa05d7aa13cfcaf89!2sWissen!5e0!3m2!1str!2str!4v1654503455480!5m2!1str!2str" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
+                <div class="col-6" id="map"></div>
             </div>
         </div>
     </form>
 </div>
+<script src="https://maps.googleapis.com/maps/api/js?key=***apikey***&callback=initMap&v=weekly"
+        defer></script>
