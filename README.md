@@ -15,6 +15,7 @@ olarak gönderilmektedir. Müşteri servis konumu girmek için Google maps Api k
  - EntityFramework Code First
  - ASP.Net Identity
  - ASP.Net Identity EntityFramework
+ - -Google Maps Api
  
  ### 1- Register Page
  ![Inkedregister_LI](https://user-images.githubusercontent.com/100076932/172198569-a4fc5175-080c-4467-9b96-d42a166d2e2a.jpg)
