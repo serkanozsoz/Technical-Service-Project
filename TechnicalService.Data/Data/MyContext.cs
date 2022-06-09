@@ -11,11 +11,6 @@ namespace TechnicalService.Data.Data
         {
         }
 
-        public MyContext()
-        {
-
-        }
-
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -44,6 +39,7 @@ namespace TechnicalService.Data.Data
                 entity.Property(x => x.DoorNo).HasMaxLength(5).IsRequired(true);
                 entity.Property(x => x.Email).HasMaxLength(50).IsRequired(true);
                 entity.HasOne<ApplicationUser>().WithMany().HasForeignKey(x => x.UserId).OnDelete(DeleteBehavior.Restrict);
+
 
             });
         }

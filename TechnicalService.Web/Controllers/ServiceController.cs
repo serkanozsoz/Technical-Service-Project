@@ -48,5 +48,25 @@ namespace TechnicalService.Web.Controllersrepos
             return View(model);
 
         }
+
+        [Authorize]
+        public IActionResult ServiceDemands()
+        {
+            var model = from sd in _context.ServiceDemands
+                        join customer in _context.Users on sd.UserId equals customer.Id
+                        select (new ServiceDemand
+                        {
+                            UserId = sd.UserId,
+                            Address = sd.Address,
+                            BuildingNo = sd.BuildingNo,
+                            CreatedAt = sd.CreatedAt,
+                            DoorNo = sd.DoorNo,
+                            Email = sd.Email,
+                            Id = sd.Id,
+
+                        });
+
+              return View(model.ToList());
+        }
     }
 }
