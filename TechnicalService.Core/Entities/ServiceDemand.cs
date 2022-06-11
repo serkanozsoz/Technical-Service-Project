@@ -18,9 +18,7 @@ public class ServiceDemand : BaseEntity<int>
     public string Phone { get; set; }
     public string Message { get; set; }
     public string Address { get; set; }
-    public string? UserId { get; set; }
-
-    public int? TechnicianId { get; set; }
+    public string UserId { get; set; }
+    public string TechnicianId { get; set; }
     public int StatusId { get; set; }
-
 }
