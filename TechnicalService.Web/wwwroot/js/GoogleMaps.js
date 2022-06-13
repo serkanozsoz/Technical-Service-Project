@@ -8,12 +8,12 @@ if (navigator.geolocation) {
 }
 
 function onSuccess(position) {
-     latitude = position.coords.latitude;
-     longitude = position.coords.longitude;
+    latitude = position.coords.latitude;
+    longitude = position.coords.longitude;
 
     initMap();
 
-    const api_key = "****";
+    const api_key = "***"
     const url = `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${api_key}`;
 
     fetch(url)
@@ -27,7 +27,7 @@ function onSuccess(position) {
             document.getElementById("CustomerAdressid").value =
                 `${details}`;
 
-            
+
         });
 }
 
@@ -43,6 +43,7 @@ function onError(error) {
 }
 
 let map;
+let marker;
 
 function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {
@@ -50,13 +51,31 @@ function initMap() {
         zoom: 15,
     });
 
-    const marker = new google.maps.Marker({
+    marker = new google.maps.Marker({
         position: { lat: latitude, lng: longitude },
         map: map,
     });
+
+    map.addListener('click', (e) => {
+        var posClick = {
+            lat: e.latLng.lat(),
+            lng: e.latLng.lng()
+        };
+        //markerlarý temizle
+        marker.setMap(null);
+        //týklanan konuma göre marker ekle
+        //marker = new google.maps.Marker({
+        //    position: posClick,
+        //    map: map,
+        //    title: 'Adresiniz',
+        //    animation: google.maps.Animation.DROP
+        //});
+        const pos = {
+            coords: {
+                latitude: posClick.lat,
+                longitude: posClick.lng
+            }
+        };
+        onSuccess(pos);
+    });
 }
-
-
-
-
-
